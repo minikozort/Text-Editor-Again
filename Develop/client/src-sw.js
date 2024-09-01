@@ -24,7 +24,20 @@ warmStrategyCache({
   strategy: pageCache,
 });
 
-registerRoute(({ request }) => request.mode === 'navigate', pageCache);
+const { StaleWhileRevalidate } = require('workbox-strategies');
 
-// TODO: Implement asset caching
-registerRoute();
+// Cache CSS, JS, and image files
+registerRoute(
+  ({ request }) => 
+    request.destination === 'style' || 
+    request.destination === 'script' || 
+    request.destination === 'image',
+  new StaleWhileRevalidate({
+    cacheName: 'asset-cache',
+    plugins: [
+      new CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+    ],
+  })
+);
