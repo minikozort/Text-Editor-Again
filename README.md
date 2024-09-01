@@ -18,4 +18,4 @@ Please click on deployed link below and you will be prompted to the main page of
 
 
 Github Repository : https://github.com/minikozort/Text-Editor-Again.git
-Deployed Link : 
+Deployed Link : https://text-editor-again.onrender.com/
